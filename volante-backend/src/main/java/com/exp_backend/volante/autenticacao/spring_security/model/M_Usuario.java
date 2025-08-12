@@ -14,9 +14,9 @@ public class M_Usuario {
 
     private String nome;
 
-    private String email;
+    private String username; // E-mail
 
-    private String senha;
+    private String password;
 
     private String descricao;
 
@@ -34,6 +34,14 @@ public class M_Usuario {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -42,20 +50,12 @@ public class M_Usuario {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDescricao() {

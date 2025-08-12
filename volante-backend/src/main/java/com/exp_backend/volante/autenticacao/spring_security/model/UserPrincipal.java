@@ -46,12 +46,12 @@ public class UserPrincipal implements UserDetails {
     // DESCOMENTAR FUNÇÕES E REMOVER RETURN NULL QUANDO USUÁRIO ESTIVER IMPLEMENTADO
     @Override
     public String getPassword() {
-        return usuario.getSenha();
+        return usuario.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return usuario.getNome();
+        return usuario.getUsername();
     }
 
     @Override
