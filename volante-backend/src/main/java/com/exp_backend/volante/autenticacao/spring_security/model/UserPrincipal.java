@@ -9,40 +9,49 @@ import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-    // AQUI É O MODEL DO USUARIO
-    //private M_Usuario usuario;
+    private M_Usuario usuario;
 
-
-    // AQUI VOCÊ COLOCA O SEGUINTE CÓDIGO DENTRO DOS PARÂMETROS DA FUNÇÃO: M_Usuario usuario
-    public UserPrincipal() // <- AQUI BOTA O CÓDIGO
+    public UserPrincipal(M_Usuario usuario)
     {
-        //this.usuario = usuario;
+        this.usuario = usuario;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // REMOVER COMENTÁRIOS E RETURN NULL AQUI DENTRO APÓS IMPLEMENTAR MODEL DE USUÁRIO
-        /*UserRole role = usuario.getRole();
-        if(role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
-                new SimpleGrantedAuthority("ROLE_PROFESSOR"), new SimpleGrantedAuthority("ROLE_ALUNO"));
-        else if (role == UserRole.PROFESSOR) return List.of(new SimpleGrantedAuthority("ROLE_PROFESSOR"),
-                new SimpleGrantedAuthority("ROLE_ALUNO"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));*/
-        return null;
+        switch (usuario.getRole()) {
+            case ADMIN -> {
+                return List.of(
+                    new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_SECRETARIO"),
+                    new SimpleGrantedAuthority("ROLE_VENDEDOR"),
+                    new SimpleGrantedAuthority("ROLE_CLIENTE"));
+            }
+            case SECRETARIO -> {
+                return List.of(new SimpleGrantedAuthority("ROLE_SECRETARIO"));
+            }
+            case VENDEDOR -> {
+                return List.of(new SimpleGrantedAuthority("ROLE_VENDEDOR"));
+            }
+            case CLIENTE -> {
+                return List.of(new SimpleGrantedAuthority("ROLE_CLIENTE"));
+            }
+            default -> {
+                return null;
+            }
+        }
+
     }
 
 
     // DESCOMENTAR FUNÇÕES E REMOVER RETURN NULL QUANDO USUÁRIO ESTIVER IMPLEMENTADO
     @Override
     public String getPassword() {
-        //return usuario.getPassword();
-        return null;
+        return usuario.getSenha();
     }
 
     @Override
     public String getUsername() {
-        //return usuario.getUsername();
-        return null;
+        return usuario.getNome();
     }
 
     @Override
