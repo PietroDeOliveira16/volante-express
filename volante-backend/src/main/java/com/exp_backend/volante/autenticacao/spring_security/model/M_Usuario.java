@@ -2,6 +2,8 @@ package com.exp_backend.volante.autenticacao.spring_security.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 /**
  * Modelo que representa usuários do sistema
  */
@@ -13,6 +15,11 @@ public class M_Usuario {
     private Long id;
 
     private String nome;
+
+    @Column(precision = 11)
+    private BigDecimal cpf; // armazena apenas os dígitos
+
+    private String telefone;
 
     private String username; // E-mail
 
@@ -48,6 +55,22 @@ public class M_Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public BigDecimal getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(BigDecimal cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getPassword() {
