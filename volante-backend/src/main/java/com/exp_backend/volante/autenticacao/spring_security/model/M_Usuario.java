@@ -28,8 +28,8 @@ public class M_Usuario {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "fk_imagem")
-    private M_Imagem imagem;
+    @JoinColumn(name = "fk_foto_de_perfil")
+    private M_Arquivo foto_de_perfil;
 
     private UserRole role;
 
@@ -89,12 +89,12 @@ public class M_Usuario {
         this.descricao = descricao;
     }
 
-    public M_Imagem getImagem() {
-        return imagem;
+    public M_Arquivo getFoto_de_perfil() {
+        return foto_de_perfil;
     }
 
-    public void setImagem(M_Imagem imagem) {
-        this.imagem = imagem;
+    public void setFoto_de_perfil(M_Arquivo foto_de_perfil) {
+        this.foto_de_perfil = foto_de_perfil;
     }
 
     public UserRole getRole() {

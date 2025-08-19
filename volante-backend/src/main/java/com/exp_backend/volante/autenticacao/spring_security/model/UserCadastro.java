@@ -9,11 +9,11 @@ public class UserCadastro {
     private final String nome;
     private final String cpf;
     private final String telefone;
-    private final String foto_de_perfil; // TODO: Implementar IMAGENS
+    private final M_Arquivo foto_de_perfil; // TODO: Implementar IMAGENS
     private final String email;
     private final String senha;
 
-    public UserCadastro(String nome, String cpf, String telefone, String foto_de_perfil, String email, String senha) {
+    public UserCadastro(String nome, String cpf, String telefone, M_Arquivo foto_de_perfil, String email, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -34,7 +34,7 @@ public class UserCadastro {
         return telefone;
     }
 
-    public String getFoto_de_perfil() {
+    public M_Arquivo getFoto_de_perfil() {
         return foto_de_perfil;
     }
 

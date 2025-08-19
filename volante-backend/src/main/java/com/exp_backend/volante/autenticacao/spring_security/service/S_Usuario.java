@@ -5,6 +5,7 @@ import com.exp_backend.volante.autenticacao.spring_security.model.UserCadastro;
 import com.exp_backend.volante.autenticacao.spring_security.model.UserRole;
 import com.exp_backend.volante.autenticacao.spring_security.repository.R_Usuario;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
 /**
  * Service para a tabela {@link com.exp_backend.volante.autenticacao.spring_security.model.M_Usuario}
  */
+@Service
 public class S_Usuario {
     private final R_Usuario r_usuario;
     private final BCryptPasswordEncoder encoder;
@@ -41,7 +43,7 @@ public class S_Usuario {
         usuario.setPassword(encoder.encode(cadastro.getSenha()));
 
         usuario.setDescricao("Olá, sou novo aqui. Esta é uma descrição temporária.");
-        usuario.setImagem(null); //TODO: IMPLEMENTAR IMAGENS
+        usuario.setFoto_de_perfil(cadastro.getFoto_de_perfil());
         usuario.setRole(UserRole.CLIENTE);
 
         return r_usuario.save(usuario);
