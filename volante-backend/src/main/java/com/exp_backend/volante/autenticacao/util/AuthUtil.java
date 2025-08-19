@@ -1,6 +1,8 @@
 package com.exp_backend.volante.autenticacao.util;
 
 import com.exp_backend.volante.autenticacao.jwt.service.S_Jwt;
+import com.exp_backend.volante.autenticacao.spring_security.model.M_Usuario;
+import com.exp_backend.volante.autenticacao.spring_security.repository.R_Usuario;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,8 @@ public class AuthUtil {
     private S_Jwt s_jwt;
 
     // AQUI VAI O REPOSITORY DO MODEL DE USUÁRIO
-    /*@Autowired
-    private R_Usuario r_usuario;*/
+    @Autowired
+    private R_Usuario r_usuario;
 
     public static String retreiveTokenFromCookies(Cookie[] cookies){
         String token = null;
@@ -29,9 +31,9 @@ public class AuthUtil {
     }
 
     // TIRAR ESTA FUNÇÃO DO COMENTÁRIO QUANDO MODEL E REPOSITORY DE USUARIO ESTIVER IMPLEMENTADO
-   /* public M_Usuario findUsuarioWithRequest(HttpServletRequest request){
+   public M_Usuario findUsuarioWithRequest(HttpServletRequest request){
         String token = AuthUtil.retreiveTokenFromCookies(request.getCookies());
         String username = s_jwt.extractUsernameFromToken(token);
         return r_usuario.findByUsername(username);
-    }*/
+    }
 }

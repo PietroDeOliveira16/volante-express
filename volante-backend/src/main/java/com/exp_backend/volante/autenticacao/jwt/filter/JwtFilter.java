@@ -39,8 +39,8 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        String token = null;
-        String username = null;
+        String token;
+        String username;
 
         token = AuthUtil.retreiveTokenFromCookies(cookies);
 

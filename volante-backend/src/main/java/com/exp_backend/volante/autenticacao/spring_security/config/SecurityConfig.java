@@ -60,14 +60,14 @@ public class SecurityConfig {
                         // TIRE O COMENTÁRIO APENAS SE A LISTA DE ENDPOINTS ESTIVER COM ALGUM CONTEÚDO,
                         // POIS DÁ ERRO SE A LISTA ESTIVER VAZIA
                         // SE ALGUMA LISTA ESTIVER VAZIA, COMENTE A LINHA DESSA LISTA
-                        .requestMatchers(HttpMethod.POST, SecurityParameters.ADMIN_POST_ENDPOINTS.toArray(new String[0])).hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, SecurityParameters.ADMIN_GET_ENDPOINTS.toArray(new String[0])).hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, SecurityParameters.VENDEDOR_POST_ENDPOINTS.toArray(new String[0])).hasRole("VENDEDOR")
-                        .requestMatchers(HttpMethod.GET, SecurityParameters.VENDEDOR_GET_ENDPOINTS.toArray(new String[0])).hasRole("VENDEDOR")
-                        .requestMatchers(HttpMethod.POST, SecurityParameters.SECRETARIO_POST_ENDPOINTS.toArray(new String[0])).hasRole("SECRETARIO")
-                        .requestMatchers(HttpMethod.GET, SecurityParameters.SECRETARIO_GET_ENDPOINTS.toArray(new String[0])).hasRole("SECRETARIO")
-                        .requestMatchers(HttpMethod.POST, SecurityParameters.CLIENTE_POST_ENDPOINTS.toArray(new String[0])).hasRole("CLIENTE")
-                        .requestMatchers(HttpMethod.GET, SecurityParameters.CLIENTE_GET_ENDPOINTS.toArray(new String[0])).hasRole("CLIENTE")
+                        //.requestMatchers(HttpMethod.POST, SecurityParameters.ADMIN_POST_ENDPOINTS.toArray(new String[0])).hasRole("ADMIN")
+                        //.requestMatchers(HttpMethod.GET, SecurityParameters.ADMIN_GET_ENDPOINTS.toArray(new String[0])).hasRole("ADMIN")
+                        //.requestMatchers(HttpMethod.POST, SecurityParameters.VENDEDOR_POST_ENDPOINTS.toArray(new String[0])).hasRole("VENDEDOR")
+                        //.requestMatchers(HttpMethod.GET, SecurityParameters.VENDEDOR_GET_ENDPOINTS.toArray(new String[0])).hasRole("VENDEDOR")
+                        //.requestMatchers(HttpMethod.POST, SecurityParameters.SECRETARIO_POST_ENDPOINTS.toArray(new String[0])).hasRole("SECRETARIO")
+                        //.requestMatchers(HttpMethod.GET, SecurityParameters.SECRETARIO_GET_ENDPOINTS.toArray(new String[0])).hasRole("SECRETARIO")
+                        //.requestMatchers(HttpMethod.POST, SecurityParameters.CLIENTE_POST_ENDPOINTS.toArray(new String[0])).hasRole("CLIENTE")
+                        //.requestMatchers(HttpMethod.GET, SecurityParameters.CLIENTE_GET_ENDPOINTS.toArray(new String[0])).hasRole("CLIENTE")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .httpBasic(Customizer.withDefaults())
@@ -100,9 +100,8 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder(SecurityParameters.ENCODER_STRENGTH));
-        provider.setUserDetailsService(userDetailsService);
         return provider;
     }
 
